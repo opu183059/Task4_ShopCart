@@ -2,27 +2,28 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { RxCross1 } from "react-icons/rx";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const menu = [
-    { name: "home", link: "/" },
-    { name: "cart", link: "/cart" },
+    { name: "Home", link: "/" },
+    { name: "About us", link: "/about" },
   ];
 
   return (
-    <div>
-      <div className="navbar max-w-6xl border-b-[2px] py-3 mx-auto flex justify-between items-center px-2 md:px-0 relative">
-        <div className="logo flex items-center">
+    <div className="bg-blue-100">
+      <div className="navbar max-w-6xl py-3 mx-auto flex justify-between items-center px-2 md:px-0 relative">
+        <Link to={"/"} className="logo flex items-center">
           <h1 className="font-kaushan text-[25px]">Shops CART</h1>
-        </div>
+        </Link>
         <div className="menu hidden md:block">
           <ul className="flex gap-4">
             {menu.map((item) => (
               <li key={item.name}>
                 <a
                   href={item.link}
-                  className="uppercase font-poppins hover:text-pink-600 font-semibold  duration-150"
+                  className="uppercase font hover:text-blue-600 font-semibold  duration-150"
                 >
                   {item.name}
                 </a>
@@ -30,10 +31,17 @@ const Navbar = () => {
             ))}
           </ul>
         </div>
-        <div className="right flex gap-3 cursor-pointer">
-          <Link to={"/"} className="px-3 py-1 bg-red-300 rounded-md uppercase">
+        <div className="right flex items-center gap-4 cursor-pointer">
+          <Link to={"/cart"}>
+            <AiOutlineShoppingCart size={25}></AiOutlineShoppingCart>
+          </Link>
+          <Link
+            to={"/login"}
+            className="px-3 py-1 bg-blue-500 text-white rounded-md uppercase"
+          >
             Login
           </Link>
+
           <button
             className="md:hidden"
             onClick={() => {
@@ -41,9 +49,12 @@ const Navbar = () => {
             }}
           >
             {toggle ? (
-              <RxCross1 size={20}></RxCross1>
+              <RxCross1 size={25} className="text-blue-800"></RxCross1>
             ) : (
-              <HiOutlineMenuAlt3 size={20}></HiOutlineMenuAlt3>
+              <HiOutlineMenuAlt3
+                size={25}
+                className="text-blue-800"
+              ></HiOutlineMenuAlt3>
             )}
           </button>
         </div>
@@ -51,16 +62,16 @@ const Navbar = () => {
 
       {/* Mobile menu  */}
       <div
-        className={`mobileMenu absolute w-full overflow-hidden h-full ${
+        className={`mobileMenu absolute h-full overflow-hidden ${
           toggle ? `w-full` : `w-0`
         } bg-white duration-1000 flex justify-center items-center text-center z-50`}
       >
-        <ul className=" text-xl">
+        <ul className="text-xl">
           {menu.map((item) => (
             <li key={item.name} className="mb-8">
               <a
                 href={item.link}
-                className="uppercase font-poppins"
+                className="uppercase"
                 onClick={() => {
                   setToggle(!toggle);
                 }}
