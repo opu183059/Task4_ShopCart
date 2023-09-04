@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
-import { addToDb, getShoppingCart } from "../../utilities/utils";
+import { getShoppingCart } from "../../utilities/getShoppingCart";
+import { addToDb } from "../../utilities/addToDb";
+
 export const ProviderContext = createContext(null);
 const Provider = ({ children }) => {
   const [products, setProducts] = useState([]);
@@ -46,6 +48,10 @@ const Provider = ({ children }) => {
   //   setCart([]);
   //   deleteShoppingCart();
   // };
+
+  //   const deleteShoppingCart = () => {
+  //     localStorage.removeItem("cart");
+  //   };
 
   const value = { products, handleAddToCart };
   return (
