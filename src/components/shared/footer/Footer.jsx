@@ -5,9 +5,9 @@ import {
 } from "react-icons/ai";
 const Footer = () => {
   return (
-    <div className="bg-blue-100">
-      <div className="flex justify-between items-center max-w-6xl mx-auto py-10">
-        <p>all rights reserved</p>
+    <div className="bg-slate-50">
+      <div className="px-5 md:px-0 flex gap-2 flex-col md:flex-row justify-between items-center max-w-6xl mx-auto py-6">
+        <p>© 2023 Shopping Cart®. All rights reserved.</p>
         <div>
           <p>Follow us on:</p>
           <div className="flex justify-between cursor-pointer">

@@ -3,6 +3,8 @@ import { createContext, useEffect, useState } from "react";
 import { getShoppingCart } from "../../utilities/getShoppingCart";
 import { addToDb } from "../../utilities/addToDb";
 import { removeFromDb } from "../../utilities/removeFromDb";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 export const ProviderContext = createContext(null);
 const Provider = ({ children }) => {
@@ -43,17 +45,61 @@ const Provider = ({ children }) => {
     }
     setCart(newCart);
     addToDb(product.id);
+    toast.success(`${product.name} added to cart`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   };
 
   const handleRemoveFromCart = (id) => {
     const remaining = cart.filter((product) => product.id !== id);
     setCart(remaining);
     removeFromDb(id);
+    toast.error("item removed", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   };
 
   const handleClearCart = () => {
     setCart([]);
     localStorage.removeItem("cart");
+    toast.error("Cart Cleared", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+  const handlePlaceOrder = () => {
+    setCart([]);
+    localStorage.removeItem("cart");
+    toast.success("Ordered Placed Successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   };
 
   const value = {
@@ -62,6 +108,7 @@ const Provider = ({ children }) => {
     handleAddToCart,
     handleRemoveFromCart,
     handleClearCart,
+    handlePlaceOrder,
   };
   return (
     <ProviderContext.Provider value={value}>

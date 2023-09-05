@@ -8,15 +8,20 @@ const CartRow = ({ product }) => {
   const { handleRemoveFromCart } = useContext(ProviderContext);
 
   return (
-    <tr className="bg-blue-50/50 border-b-[1px]">
+    <tr className="bg-amber-50/50 border">
       <td className="ps-5">
-        <img src={img} alt="" className="w-12 rounded-md" />
+        <img src={img} alt="" className="w-14 rounded-md" />
       </td>
-      <td className="flex flex-col gap-2 py-3 ps-5">
-        <p> {name}</p>
-        <p>Price: ${price}</p>
+      <td className="flex flex-col py-3 ps-5">
+        <p>{name}</p>
+        <p>
+          Price:
+          <span className="text-amber-800 font-semibold mx-1">{price}</span>tk
+        </p>
+        <p className="mt-2">Quantity: {quantity}</p>
       </td>
-      <td className="py-3 ps-5">{quantity}</td>
+
+      <td className="py-3 ps-5">{quantity * price} tk</td>
       <td className="pe-5 text-right">
         <button
           onClick={() => handleRemoveFromCart(id)}

@@ -4,20 +4,21 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { ProviderContext } from "../../provider/Provider";
-
+import { FaShopify } from "react-icons/fa";
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const { cart } = useContext(ProviderContext);
   const menu = [
     { name: "Home", link: "/" },
     { name: "About us", link: "/about" },
+    { name: "Products", link: "/product" },
   ];
 
   return (
-    <div className="bg-blue-100">
-      <div className="navbar max-w-6xl py-3 mx-auto flex justify-between items-center px-2 md:px-0 relative">
-        <Link to={"/"} className="logo flex items-center">
-          <h1 className="font-kaushan text-[25px]">Shops CART</h1>
+    <div className="bg-slate-50 fixed w-full z-50 shadow-md">
+      <div className="navbar max-w-6xl py-3 mx-auto flex justify-between items-center px-2 md:px-0">
+        <Link to={"/"} className="logo flex gap-2 items-center">
+          <FaShopify size={30} className="text-amber-700"></FaShopify>
         </Link>
         <div className="menu hidden md:block">
           <ul className="flex gap-4">
@@ -25,7 +26,7 @@ const Navbar = () => {
               <li key={item.name}>
                 <a
                   href={item.link}
-                  className="uppercase font hover:text-blue-600 font-semibold  duration-150"
+                  className="uppercase hover:text-amber-600 font-semibold duration-150"
                 >
                   {item.name}
                 </a>
@@ -44,7 +45,7 @@ const Navbar = () => {
           </Link>
           <Link
             to={"/login"}
-            className="hidden md:block px-3 py-1 bg-blue-500 text-white rounded-md uppercase"
+            className="hidden md:block px-3 py-1 bg-amber-600 text-white rounded-md uppercase text-sm"
           >
             Login
           </Link>
@@ -56,11 +57,11 @@ const Navbar = () => {
             }}
           >
             {toggle ? (
-              <RxCross1 size={25} className="text-blue-800"></RxCross1>
+              <RxCross1 size={25} className="text-amber-800"></RxCross1>
             ) : (
               <HiOutlineMenuAlt3
                 size={25}
-                className="text-blue-800"
+                className="text-amber-800"
               ></HiOutlineMenuAlt3>
             )}
           </button>
@@ -69,9 +70,9 @@ const Navbar = () => {
 
       {/* Mobile menu  */}
       <div
-        className={`mobileMenu absolute h-full overflow-hidden ${
-          toggle ? `w-full` : `w-0`
-        } bg-white duration-1000 flex justify-center items-center text-center z-50`}
+        className={`mobileMenu absolute overflow-hidden w-full ${
+          toggle ? `h-screen` : `h-0`
+        } bg-white duration-700 flex justify-center items-center text-center z-50`}
       >
         <ul className="text-xl">
           {menu.map((item) => (
@@ -90,7 +91,10 @@ const Navbar = () => {
           <li>
             <Link
               to={"/login"}
-              className="px-3 py-1 bg-blue-500 text-white rounded-md uppercase"
+              onClick={() => {
+                setToggle(!toggle);
+              }}
+              className="px-3 py-1 bg-amber-600 text-sm text-white rounded-md uppercase"
             >
               Login
             </Link>
