@@ -25,3 +25,13 @@ https://shopcart-by-akther.netlify.app/
 - React ICONs
 - React Tostify
 - Tailwind CSS
+
+## How to use
+
+- Option 1: Please goto https://shopcart-by-akther.netlify.app/ and you can check the functionality from there
+
+- option 2: clone from https://github.com/opu183059/Task4_ShopCart.git
+  then open command prompt and write
+
+npm install
+npm run dev
