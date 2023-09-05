@@ -1,11 +1,13 @@
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { RxCross1 } from "react-icons/rx";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { ProviderContext } from "../../provider/Provider";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
+  const { cart } = useContext(ProviderContext);
   const menu = [
     { name: "Home", link: "/" },
     { name: "About us", link: "/about" },
@@ -31,13 +33,18 @@ const Navbar = () => {
             ))}
           </ul>
         </div>
-        <div className="right flex items-center gap-4 cursor-pointer">
-          <Link to={"/cart"}>
+        <div className="right flex items-center gap-6 cursor-pointer">
+          <Link to={"/cart"} className="relative">
             <AiOutlineShoppingCart size={25}></AiOutlineShoppingCart>
+            {cart.length > 0 && (
+              <span className="text-xs bg-red-400 rounded-full w-5 h-5 flex justify-center items-center absolute -top-2 left-6">
+                {cart.length}
+              </span>
+            )}
           </Link>
           <Link
             to={"/login"}
-            className="px-3 py-1 bg-blue-500 text-white rounded-md uppercase"
+            className="hidden md:block px-3 py-1 bg-blue-500 text-white rounded-md uppercase"
           >
             Login
           </Link>
@@ -80,6 +87,14 @@ const Navbar = () => {
               </a>
             </li>
           ))}
+          <li>
+            <Link
+              to={"/login"}
+              className="px-3 py-1 bg-blue-500 text-white rounded-md uppercase"
+            >
+              Login
+            </Link>
+          </li>
         </ul>
       </div>
     </div>

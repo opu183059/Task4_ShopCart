@@ -7,7 +7,7 @@ const Card = ({ product }) => {
   const { handleAddToCart } = useContext(ProviderContext);
   return (
     <div>
-      <div className="p-5 shadow rounded-lg hover:shadow-lg duration-100 group bg-blue-100/20 hover:bg-blue-400/20">
+      <div className="p-5 shadow rounded-lg hover:shadow-lg duration-100 group bg-blue-100/10 hover:bg-blue-100/20">
         <div className="overflow-hidden rounded-t-lg">
           <img
             src={img}

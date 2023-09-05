@@ -53,7 +53,7 @@ const Provider = ({ children }) => {
   //     localStorage.removeItem("cart");
   //   };
 
-  const value = { products, handleAddToCart };
+  const value = { products, cart, handleAddToCart };
   return (
     <ProviderContext.Provider value={value}>
       {children}
