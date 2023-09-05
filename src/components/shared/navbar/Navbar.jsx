@@ -37,7 +37,7 @@ const Navbar = () => {
           <Link to={"/cart"} className="relative">
             <AiOutlineShoppingCart size={25}></AiOutlineShoppingCart>
             {cart.length > 0 && (
-              <span className="text-xs bg-red-400 rounded-full w-5 h-5 flex justify-center items-center absolute -top-2 left-6">
+              <span className="text-xs bg-red-500 text-white rounded-full w-5 h-5 flex justify-center items-center absolute -top-2 left-6">
                 {cart.length}
               </span>
             )}

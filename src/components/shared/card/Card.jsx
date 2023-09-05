@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { ProviderContext } from "../../provider/Provider";
-
+import { BiSolidCartAdd } from "react-icons/bi";
 /* eslint-disable react/prop-types */
 const Card = ({ product }) => {
   const { name, price, ratings, img } = product || {};
@@ -29,7 +29,10 @@ const Card = ({ product }) => {
             onClick={() => handleAddToCart(product)}
             className="bg-blue-500 hover:bg-blue-700 duration-300 text-white px-2 py-1 rounded mt-3"
           >
-            Add to Cart
+            <div className="flex items-center gap-2">
+              <span>Add to Cart</span>
+              <BiSolidCartAdd size={18}></BiSolidCartAdd>
+            </div>
           </button>
         </div>
       </div>

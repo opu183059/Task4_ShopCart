@@ -2,6 +2,7 @@
 import { createContext, useEffect, useState } from "react";
 import { getShoppingCart } from "../../utilities/getShoppingCart";
 import { addToDb } from "../../utilities/addToDb";
+import { removeFromDb } from "../../utilities/removeFromDb";
 
 export const ProviderContext = createContext(null);
 const Provider = ({ children }) => {
@@ -44,16 +45,24 @@ const Provider = ({ children }) => {
     addToDb(product.id);
   };
 
-  // const handleClearCart = () => {
-  //   setCart([]);
-  //   deleteShoppingCart();
-  // };
+  const handleRemoveFromCart = (id) => {
+    const remaining = cart.filter((product) => product.id !== id);
+    setCart(remaining);
+    removeFromDb(id);
+  };
 
-  //   const deleteShoppingCart = () => {
-  //     localStorage.removeItem("cart");
-  //   };
+  const handleClearCart = () => {
+    setCart([]);
+    localStorage.removeItem("cart");
+  };
 
-  const value = { products, cart, handleAddToCart };
+  const value = {
+    products,
+    cart,
+    handleAddToCart,
+    handleRemoveFromCart,
+    handleClearCart,
+  };
   return (
     <ProviderContext.Provider value={value}>
       {children}
